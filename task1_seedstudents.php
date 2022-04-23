@@ -4,7 +4,7 @@
     include("_includes/functions.inc");
 
     // Insert 5 student records into the database
-    $sql = "INSERT INTO students VALUES ";
+    $sql = "INSERT INTO student VALUES ";
     $sql .= "('20000001', '" . password_hash("password1", PASSWORD_DEFAULT) . "', '1980-08-25', 
         'Terry', 'Walker', '25 Maine Way', 'High Wycombe', 'Bucks', 'UK', 'HP12 1ZZ'), ";
     $sql .= "('20000002', '" . password_hash("password2", PASSWORD_DEFAULT) . "', '1970-05-23', 
