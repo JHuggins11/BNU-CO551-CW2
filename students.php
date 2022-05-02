@@ -1,4 +1,4 @@
-<!-- CO551 CW2 - Tasks 2-3 -->
+<!-- CO551 CW2 - Tasks 2-3, 5 -->
 <!DOCTYPE html>
 <html>
     <head></head>
@@ -11,7 +11,7 @@
             // Account login check
             if (isset($_SESSION['id'])) {
                 // Select all records from the student table
-                $sql = "SELECT studentid, password, dob, firstname, lastname, house, town, county, country, postcode FROM student";
+                $sql = "SELECT studentid, password, dob, firstname, lastname, house, town, county, country, postcode, image FROM student";
                 $result = mysqli_query($conn, $sql);
 
                 // Create HTML table
@@ -19,7 +19,7 @@
                 echo "<tr><th align='left'>Student ID</th><th align='left'>Password</th><th align='left'>Date of Birth</th>"
                     . "<th align='left'>First Name</th><th align='left'>Last Name</th><th align='left'>House Address</th>"
                     . "<th align='left'>Town/City</th><th align='left'>County</th><th align='left'>Country</th>"
-                    . "<th align='left'>Postcode</th><th>Select</th></tr>";
+                    . "<th align='left'>Postcode</th><th>Image</th><th>Select</th></tr>";
 
                 // Display each record from the student table in the HTML table
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -34,6 +34,7 @@
                     echo "<td>" . $row["county"] . "</td>";
                     echo "<td>" . $row["country"] . "</td>";
                     echo "<td>" . $row["postcode"] . "</td>";
+                    echo "<td>" . $row["image"] . "</td>";
                     echo "<td><input type='checkbox' name='selectedrecord'></td>";
                     echo "</tr>";
                 }

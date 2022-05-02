@@ -1,4 +1,4 @@
-<!-- CO551 CW2 - Task 4 -->
+<!-- CO551 CW2 - Tasks 4-5 -->
 <?php
     include("_includes/config.inc");
     include("_includes/dbconnect.inc");
@@ -6,10 +6,16 @@
 
     // Checks account login first, then if the form has been submitted, it will insert the inputted student into the student table. Otherwise, it will display the form.
     if (isset($_SESSION['id'], $_POST["btnsubmit"])) {
+        // Obtain file sent to server within the response
+        $image = $_FILES["imgstudent"]["tmp_name"];
+
+        // Get file binary data
+        $imagedata = addslashes(fread(fopen($image, "r"), filesize($image)));
+        
         $sql = "INSERT INTO student ";
         $sql .= "VALUES ('$_POST[txtstudentid]', '" . password_hash($_POST['txtpassword'], PASSWORD_DEFAULT) . "', '$_POST[datedob]', ";
         $sql .= "'$_POST[txtfname]', '$_POST[txtlname]', '$_POST[txthouse]', '$_POST[txttown]', '$_POST[txtcounty]', ";
-        $sql .= "'$_POST[txtcountry]', '$_POST[txtpostcode]');";
+        $sql .= "'$_POST[txtcountry]', '$_POST[txtpostcode]', '$imagedata');";
 
         $result = mysqli_query($conn, $sql);
 
@@ -52,6 +58,9 @@
 
                     <label for="txtpostcode">Postcode:</label>
                     <input type="text" id="txtpostcode" name="txtpostcode" required><br><br>
+
+                    <label for="imgstudent">Image (JPEG only):<label>
+                    <input type="file" name="imgstudent" accept="image/jpeg" required><br><br>
 
                     <input type="submit" name="btnsubmit" value="Submit">
                 </form>
