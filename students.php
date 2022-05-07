@@ -17,6 +17,9 @@
                 $sql = "SELECT studentid, password, dob, firstname, lastname, house, town, county, country, postcode, image FROM student";
                 $result = mysqli_query($conn, $sql);
 
+                // Wraps table within an HTML form tag, with the form posting to the specified script to delete the selected student records
+                $data['content'] .= "<form action='deletestudents.php' method='post'>";
+
                 // Prepare page content and create HTML table
                 $data['content'] .= "<table align='left' border='1'>";
                 $data['content'] .= "<tr><th align='left'>Student ID</th><th align='left'>Password</th><th align='left'>Date of Birth</th>"
@@ -38,7 +41,7 @@
                     $data['content'] .= "<td>" . $row["country"] . "</td>";
                     $data['content'] .= "<td>" . $row["postcode"] . "</td>";
                     $data['content'] .= "<td>" . $row["image"] . "</td>";
-                    $data['content'] .= "<td><input type='checkbox' name='selectedrecord'></td>";
+                    $data['content'] .= "<td><input type='checkbox' name='students[]' value='$row[studentid]'></td>";
                     $data['content'] .= "</tr>";
                 }
 
@@ -50,17 +53,7 @@
                 }
 
                 $data['content'] .= "<input type='submit' name='btndelete' value='Delete'>";
-
-                // TODO: Needs fixing as the delete button doesn't work when records are checked.
-                // Deletes the records that have checked checkboxes.
-                if (isset($_POST['selectedrecord'], $_POST['btndelete'])) {
-                    $sql = "DELETE FROM student WHERE studentid = '$_GET[studentid]'";
-                    $result = mysqli_query($conn, $sql);
-
-                    if ($result) {
-                        $data['content'] .= "<p>Record(s) deleted.</p>";
-                    }
-                }
+                $data['content'] .= "</form>";
 
                 // Render the template
                 echo template("templates/default.php", $data);
