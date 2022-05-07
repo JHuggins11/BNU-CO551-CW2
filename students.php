@@ -18,7 +18,7 @@
                 $result = mysqli_query($conn, $sql);
 
                 // Wraps table within an HTML form tag, with the form posting to the specified script to delete the selected student records
-                $data['content'] .= "<form action='deletestudents.php' method='post'>";
+                $data['content'] .= "<br><form action='deletestudents.php' method='post'>";
 
                 // Prepare page content and create HTML table
                 $data['content'] .= "<table align='left' border='1'>";
@@ -54,6 +54,7 @@
 
                 $data['content'] .= "<input type='submit' name='btndelete' value='Delete'>";
                 $data['content'] .= "</form>";
+                $data['content'] .= "<br>WARNING: Don't delete the first record, otherwise you won't be able to login again.";
 
                 // Render the template
                 echo template("templates/default.php", $data);

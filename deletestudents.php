@@ -1,29 +1,34 @@
 <!-- CO551 CW2 - Task 3 -->
-<!DOCTYPE html>
-<html>
-    <head></head>
-    <body>
-        <?php
-            include("_includes/config.inc");
-            include("_includes/dbconnect.inc");
-            include("_includes/functions.inc");
+<?php
+    include("_includes/config.inc");
+    include("_includes/dbconnect.inc");
+    include("_includes/functions.inc");
 
-            // Account login check
-            if (isset($_SESSION['id'])) {
-                // Troubleshooting
-                var_dump($_POST);
-                die();
+    // Account login check
+    if (isset($_SESSION['id'])) {
+        // Troubleshooting
+        var_dump($_POST['students']);
+        die();
 
-                // Select all records from the student table
-                //$sql = "SELECT studentid, password, dob, firstname, lastname, house, town, county, country, postcode, image FROM student";
-                //$result = mysqli_query($conn, $sql);
+        // If the students array is empty, redirect
+        if (empty($_POST['students'])) {
+            header("Location: students.php");
+        }
 
-                // Redirect
-                header("Location: students.php");
-            } 
-            else {
-                header("Location: index.php");
-            }
-        ?>
-    </body>
-</html>
+        // Loops over students array and runs a SQL delete query
+        foreach ($_POST['students'] as $student) {
+            $sql = "DELETE FROM student WHERE studentid = '$_GET[studentid]'";
+            $result = mysqli_query($conn, $sql);
+        }
+
+        if ($result) {
+            echo "Record(s) deleted.";
+        }
+
+        // Redirect
+        header("Location: students.php");
+    } 
+    else {
+        header("Location: index.php");
+    }
+?>
