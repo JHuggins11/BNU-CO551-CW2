@@ -47,13 +47,13 @@
         $data['content'] .= "</table>";
 
         // Adding multiple line breaks so the delete button is below the table.
-        for ($i=0; $i < 12; $i++) { 
+        for ($i=0; $i < 22; $i++) { 
             $data['content'] .= "<br>";
         }
 
         $data['content'] .= "<input type='submit' name='btndelete' value='Delete'>";
         $data['content'] .= "</form>";
-        $data['content'] .= "<br>WARNING: Don't delete the first record, otherwise you won't be able to login again.";
+        $data['content'] .= "WARNING: Don't delete the first record, otherwise you won't be able to login again.";
 
         // Render the template
         echo template("templates/default.php", $data);
