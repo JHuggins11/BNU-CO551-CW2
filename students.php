@@ -20,7 +20,7 @@
         $data['content'] .= "<form action='deletestudents.php' method='post'>";
 
         // Prepare page content and create HTML table
-        $data['content'] .= "<table align='left' border='1'>";
+        $data['content'] .= "<table class='table table-bordered' align='left' border='1'>";
         $data['content'] .= "<tr><th align='left'>Student ID</th><th align='left'>Password</th><th align='left'>Date of Birth</th>"
             . "<th align='left'>First Name</th><th align='left'>Last Name</th><th align='left'>House Address</th>"
             . "<th align='left'>Town/City</th><th align='left'>County</th><th align='left'>Country</th>"
