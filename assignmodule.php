@@ -1,4 +1,5 @@
 <?php
+// CO551 CW2 - Task 6 (Bootstrap reference: https://getbootstrap.com/docs/5.1/forms/overview/)
 
 include("_includes/config.inc");
 include("_includes/dbconnect.inc");

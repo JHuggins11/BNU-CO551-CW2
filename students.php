@@ -1,5 +1,5 @@
 <?php
-    // CO551 CW2 - Tasks 2-3, 5
+    // CO551 CW2 - Tasks 2-3, 5-6 (Bootstrap reference: https://getbootstrap.com/docs/5.1/content/tables/)
 
     include("_includes/config.inc");
     include("_includes/dbconnect.inc");
