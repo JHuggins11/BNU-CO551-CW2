@@ -7,8 +7,8 @@
     // Account login check
     if (isset($_SESSION['id'])) {
         // Troubleshooting
-        var_dump($_POST['students']);
-        die();
+        //var_dump($_POST['students']);
+        //die();
 
         // If the students array is empty, redirect
         if (empty($_POST['students'])) {
@@ -17,7 +17,7 @@
 
         // Loops over students array and runs a SQL delete query
         foreach ($_POST['students'] as $student) {
-            $sql = "DELETE FROM student WHERE studentid = '$_GET[studentid]'";
+            $sql = "DELETE FROM student WHERE studentid = $student";
             $result = mysqli_query($conn, $sql);
         }
 
