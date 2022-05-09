@@ -1,69 +1,64 @@
-<!-- CO551 CW2 - Tasks 2-3, 5 -->
-<!DOCTYPE html>
-<html>
-    <head></head>
-    <body>
-        <?php
-            include("_includes/config.inc");
-            include("_includes/dbconnect.inc");
-            include("_includes/functions.inc");
+<?php
+    // CO551 CW2 - Tasks 2-3, 5
 
-            // Account login check
-            if (isset($_SESSION['id'])) {
-                echo template("templates/partials/header.php");
-                echo template("templates/partials/nav.php");
+    include("_includes/config.inc");
+    include("_includes/dbconnect.inc");
+    include("_includes/functions.inc");
 
-                // Select all records from the student table
-                $sql = "SELECT studentid, password, dob, firstname, lastname, house, town, county, country, postcode, image FROM student";
-                $result = mysqli_query($conn, $sql);
+    // Account login check
+    if (isset($_SESSION['id'])) {
+        echo template("templates/partials/header.php");
+        echo template("templates/partials/nav.php");
 
-                // Wraps table within an HTML form tag, with the form posting to the specified script to delete the selected student records
-                $data['content'] .= "<br><form action='deletestudents.php' method='post'>";
+        // Select all records from the student table
+        $sql = "SELECT studentid, password, dob, firstname, lastname, house, town, county, country, postcode, image FROM student";
+        $result = mysqli_query($conn, $sql);
 
-                // Prepare page content and create HTML table
-                $data['content'] .= "<table align='left' border='1'>";
-                $data['content'] .= "<tr><th align='left'>Student ID</th><th align='left'>Password</th><th align='left'>Date of Birth</th>"
-                    . "<th align='left'>First Name</th><th align='left'>Last Name</th><th align='left'>House Address</th>"
-                    . "<th align='left'>Town/City</th><th align='left'>County</th><th align='left'>Country</th>"
-                    . "<th align='left'>Postcode</th><th>Image</th><th>Select</th></tr>";
+        // Wraps table within an HTML form tag, with the form posting to the specified script to delete the selected student records
+        $data['content'] .= "<br><form action='deletestudents.php' method='post'>";
 
-                // Display each record from the student table in the HTML table
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $data['content'] .= "<tr>";
-                    $data['content'] .= "<td>" . $row["studentid"] . "</td>";
-                    $data['content'] .= "<td>" . $row["password"] . "</td>";
-                    $data['content'] .= "<td>" . $row["dob"] . "</td>";
-                    $data['content'] .= "<td>" . $row["firstname"] . "</td>";
-                    $data['content'] .= "<td>" . $row["lastname"] . "</td>";
-                    $data['content'] .= "<td>" . $row["house"] . "</td>";
-                    $data['content'] .= "<td>" . $row["town"] . "</td>";
-                    $data['content'] .= "<td>" . $row["county"] . "</td>";
-                    $data['content'] .= "<td>" . $row["country"] . "</td>";
-                    $data['content'] .= "<td>" . $row["postcode"] . "</td>";
-                    $data['content'] .= "<td>" . $row["image"] . "</td>";
-                    $data['content'] .= "<td><input type='checkbox' name='students[]' value='$row[studentid]'></td>";
-                    $data['content'] .= "</tr>";
-                }
+        // Prepare page content and create HTML table
+        $data['content'] .= "<table align='left' border='1'>";
+        $data['content'] .= "<tr><th align='left'>Student ID</th><th align='left'>Password</th><th align='left'>Date of Birth</th>"
+            . "<th align='left'>First Name</th><th align='left'>Last Name</th><th align='left'>House Address</th>"
+            . "<th align='left'>Town/City</th><th align='left'>County</th><th align='left'>Country</th>"
+            . "<th align='left'>Postcode</th><th>Image</th><th>Select</th></tr>";
 
-                $data['content'] .= "</table>";
+        // Display each record from the student table in the HTML table
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data['content'] .= "<tr>";
+            $data['content'] .= "<td>" . $row["studentid"] . "</td>";
+            $data['content'] .= "<td>" . $row["password"] . "</td>";
+            $data['content'] .= "<td>" . $row["dob"] . "</td>";
+            $data['content'] .= "<td>" . $row["firstname"] . "</td>";
+            $data['content'] .= "<td>" . $row["lastname"] . "</td>";
+            $data['content'] .= "<td>" . $row["house"] . "</td>";
+            $data['content'] .= "<td>" . $row["town"] . "</td>";
+            $data['content'] .= "<td>" . $row["county"] . "</td>";
+            $data['content'] .= "<td>" . $row["country"] . "</td>";
+            $data['content'] .= "<td>" . $row["postcode"] . "</td>";
+            $data['content'] .= "<td><img src='_includes/getjpg.php?id=" . $row["studentid"] . "'></td>";
+            $data['content'] .= "<td><input type='checkbox' name='students[]' value='$row[studentid]'></td>";
+            $data['content'] .= "</tr>";
+        }
 
-                // Adding multiple line breaks so the delete button is below the table.
-                for ($i=0; $i < 12; $i++) { 
-                    $data['content'] .= "<br>";
-                }
+        $data['content'] .= "</table>";
 
-                $data['content'] .= "<input type='submit' name='btndelete' value='Delete'>";
-                $data['content'] .= "</form>";
-                $data['content'] .= "<br>WARNING: Don't delete the first record, otherwise you won't be able to login again.";
+        // Adding multiple line breaks so the delete button is below the table.
+        for ($i=0; $i < 12; $i++) { 
+            $data['content'] .= "<br>";
+        }
 
-                // Render the template
-                echo template("templates/default.php", $data);
-            } 
-            else {
-                header("Location: index.php");
-            }
+        $data['content'] .= "<input type='submit' name='btndelete' value='Delete'>";
+        $data['content'] .= "</form>";
+        $data['content'] .= "<br>WARNING: Don't delete the first record, otherwise you won't be able to login again.";
 
-            echo template("templates/partials/footer.php");
-        ?>
-    </body>
-</html>
+        // Render the template
+        echo template("templates/default.php", $data);
+    } 
+    else {
+        header("Location: index.php");
+    }
+
+    echo template("templates/partials/footer.php");
+?>

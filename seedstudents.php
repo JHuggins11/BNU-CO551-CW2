@@ -1,5 +1,6 @@
-<!-- CO551 CW2 - Task 1 -->
 <?php
+    // CO551 CW2 - Task 1
+
     include("_includes/config.inc");
     include("_includes/dbconnect.inc");
     include("_includes/functions.inc");
