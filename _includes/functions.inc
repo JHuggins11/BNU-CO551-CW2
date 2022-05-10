@@ -1,4 +1,5 @@
 <?php
+// CO551 CW2 - Task 7
 
 include "passwordLib.php";
 
@@ -11,10 +12,14 @@ include "passwordLib.php";
  */
 function validatelogin($id,$password) {
    global $conn;
-   // Build an SQL statment that will return a record with a matching id
-   $sql = "select * from student where studentid='$id';";
+   // Prepares and binds an SQL statment that will return a record with a matching id 
+   //$sql = "select * from student where studentid='$id';"; - BEFORE
+   $stmt = $conn->prepare("select * from student where studentid=?;"); // AFTER
+   $stmt->bind_param("s", $id);
+   $stmt->execute();
 	//echo $sql;
-   $loginresult = mysqli_query($conn, $sql);
+   //$loginresult = mysqli_query($conn, $sql); - BEFORE
+   $loginresult = $stmt->get_result(); // AFTER
    $studentdetails = mysqli_fetch_assoc($loginresult);
 	//print_r($studentdetails);
 
