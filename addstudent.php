@@ -27,8 +27,8 @@
             $result = mysqli_query($conn, $sql);*/
 
             // Prepare statement and bind values
-            $stmt = $conn->prepare("INSERT INTO student VALUES (?, " . password_hash("?", PASSWORD_DEFAULT) . ", ?, ?, ?, ?, ?, ?, ?, ?, ?);");
-            $stmt->bind_param("sssssssssss", $_POST["txtstudentid"], $_POST["txtpassword"], $_POST["datedob"], $_POST["txtfname"], $_POST["txtlname"], 
+            $stmt = $conn->prepare("INSERT INTO student VALUES (?, '" . password_hash($_POST['txtpassword'], PASSWORD_DEFAULT) . "', ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+            $stmt->bind_param("sssssssssb", $_POST["txtstudentid"], $_POST["datedob"], $_POST["txtfname"], $_POST["txtlname"], 
                 $_POST["txthouse"], $_POST["txttown"], $_POST["txtcounty"], $_POST["txtcountry"], $_POST["txtpostcode"], $imagedata);
             $stmt->execute();
 

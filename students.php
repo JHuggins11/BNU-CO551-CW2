@@ -10,6 +10,7 @@
         echo template("templates/partials/header.php");
         echo template("templates/partials/nav.php");
 
+        // TODO: prepared statement
         // Select all records from the student table
         $sql = "SELECT studentid, password, dob, firstname, lastname, house, town, county, country, postcode, image FROM student";
         $result = mysqli_query($conn, $sql);
@@ -51,7 +52,8 @@
             $data['content'] .= "<br>";
         }
 
-        $data['content'] .= "<input type='submit' name='btndelete' value='Delete'>";
+        $data['content'] .= "<input type='submit' name='btndelete' value='Delete' 
+            onclick='return confirm('Are you sure you want to delete the selected record(s)?');>";
         $data['content'] .= "</form>";
         $data['content'] .= "WARNING: Don't delete the first record, otherwise you won't be able to login again.";
 
