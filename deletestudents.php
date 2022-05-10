@@ -17,6 +17,7 @@
             header("Location: students.php");
         }
 
+        // TODO: prepared statement
         // Loops over students array and runs a SQL delete query
         foreach ($_POST['students'] as $student) {
             $sql = "DELETE FROM student WHERE studentid = $student";

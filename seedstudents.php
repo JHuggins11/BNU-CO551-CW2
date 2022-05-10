@@ -7,6 +7,7 @@
 
     // Account login check
     if (isset($_SESSION['id'])) {
+        // TODO: prepared statement
         // Insert 5 student records into the database
         $sql = "INSERT INTO student VALUES ";
         $sql .= "('20000001', '" . password_hash("password1", PASSWORD_DEFAULT) . "', '1980-08-25', 

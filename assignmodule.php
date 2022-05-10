@@ -21,20 +21,21 @@ if (isset($_SESSION['id'])) {
    else  // If a module has not been selected
    {
 
-     // Build sql statment that selects all the modules
-     $sql = "select * from module";
-     $result = mysqli_query($conn, $sql);
+      // TODO: prepared statement
+      // Build sql statment that selects all the modules
+      $sql = "select * from module";
+      $result = mysqli_query($conn, $sql);
 
-     $data['content'] .= "<form name='frmassignmodule' action='' method='post' >";
-     $data['content'] .= "<label for='selmodule' class='form-label'>Select a module to assign:</label><br/>";
-     $data['content'] .= "<select class='form-select' style='width:20%;' name='selmodule' >";
-     // Display the module name sin a drop down selection box
-     while($row = mysqli_fetch_array($result)) {
-        $data['content'] .= "<option value='$row[modulecode]'>$row[name]</option>";
-     }
-     $data['content'] .= "</select><br/>";
-     $data['content'] .= "<input type='submit' class='btn btn-primary' name='confirm' value='Save' />";
-     $data['content'] .= "</form>";
+      $data['content'] .= "<form name='frmassignmodule' action='' method='post' >";
+      $data['content'] .= "<label for='selmodule' class='form-label'>Select a module to assign:</label><br/>";
+      $data['content'] .= "<select class='form-select' style='width:20%;' name='selmodule' >";
+      // Display the module name sin a drop down selection box
+      while($row = mysqli_fetch_array($result)) {
+         $data['content'] .= "<option value='$row[modulecode]'>$row[name]</option>";
+      }
+      $data['content'] .= "</select><br/>";
+      $data['content'] .= "<input type='submit' class='btn btn-primary' name='confirm' value='Save' />";
+      $data['content'] .= "</form>";
    }
 
    // render the template

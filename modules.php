@@ -12,6 +12,7 @@
       echo template("templates/partials/header.php");
       echo template("templates/partials/nav.php");
 
+      // TODO: prepared statement
       // Build SQL statment that selects a student's modules
       $sql = "select * from studentmodules sm, module m where m.modulecode = sm.modulecode and sm.studentid = '" . $_SESSION['id'] ."';";
 

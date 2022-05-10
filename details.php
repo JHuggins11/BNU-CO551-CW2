@@ -15,6 +15,7 @@ if (isset($_SESSION['id'])) {
    // if the form has been submitted
    if (isset($_POST['submit'])) {
 
+      // TODO: prepared statement
       // build an sql statment to update the student details
       $sql = "update student set firstname ='" . $_POST['txtfirstname'] . "',";
       $sql .= "lastname ='" . $_POST['txtlastname']  . "',";
@@ -30,6 +31,7 @@ if (isset($_SESSION['id'])) {
 
    }
    else {
+      // TODO: prepared statement
       // Build a SQL statment to return the student record with the id that
       // matches that of the session variable.
       $sql = "select * from student where studentid='". $_SESSION['id'] . "';";
