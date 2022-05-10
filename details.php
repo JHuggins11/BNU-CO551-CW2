@@ -1,4 +1,5 @@
 <?php
+// CO551 CW2 - Task 6 (Bootstrap reference: https://getbootstrap.com/docs/5.1/forms/overview/)
 
 include("_includes/config.inc");
 include("_includes/dbconnect.inc");
@@ -42,21 +43,21 @@ if (isset($_SESSION['id'])) {
 
    <h2>My Details</h2>
    <form name="frmdetails" action="" method="post">
-   First Name :
-   <input name="txtfirstname" type="text" value="{$row['firstname']}" /><br/>
-   Surname :
-   <input name="txtlastname" type="text"  value="{$row['lastname']}" /><br/>
-   Number and Street :
-   <input name="txthouse" type="text"  value="{$row['house']}" /><br/>
-   Town :
-   <input name="txttown" type="text"  value="{$row['town']}" /><br/>
-   County :
-   <input name="txtcounty" type="text"  value="{$row['county']}" /><br/>
-   Country :
-   <input name="txtcountry" type="text"  value="{$row['country']}" /><br/>
-   Postcode :
-   <input name="txtpostcode" type="text"  value="{$row['postcode']}" /><br/>
-   <input type="submit" value="Save" name="submit"/>
+   <label for="txtfirstname" class="form-label">First Name:</label>
+   <input name="txtfirstname" type="text" class="form-control" style="width:15%;" value="{$row['firstname']}" /><br/>
+   <label for="txtlastname" class="form-label">Surname:</label>
+   <input name="txtlastname" type="text" class="form-control" style="width:15%;" value="{$row['lastname']}" /><br/>
+   <label for="txthouse" class="form-label">Number and Street:</label>
+   <input name="txthouse" type="text" class="form-control" style="width:15%;" value="{$row['house']}" /><br/>
+   <label for="txttown" class="form-label">Town:</label>
+   <input name="txttown" type="text" class="form-control" style="width:15%;" value="{$row['town']}" /><br/>
+   <label for="txtcounty" class="form-label">County:</label>
+   <input name="txtcounty" type="text" class="form-control" style="width:15%;" value="{$row['county']}" /><br/>
+   <label for="txtcountry" class="form-label">Country:</label>
+   <input name="txtcountry" type="text" class="form-control" style="width:15%;" value="{$row['country']}" /><br/>
+   <label for="txtpostcode" class="form-label">Postcode:</label>
+   <input name="txtpostcode" type="text" class="form-control" style="width:15%;" value="{$row['postcode']}" /><br/>
+   <input type="submit" class="btn btn-primary" value="Save" name="submit"/>
    </form>
 
 EOD;

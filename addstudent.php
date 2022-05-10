@@ -1,5 +1,5 @@
 <?php
-    // CO551 CW2 - Tasks 4-5
+    // CO551 CW2 - Tasks 4-6 (Bootstrap reference: https://getbootstrap.com/docs/5.1/forms/overview/)
 
     include("_includes/config.inc");
     include("_includes/dbconnect.inc");
@@ -33,41 +33,46 @@
             
             // Using <<<EOD notation to allow building of a multi-line string
             $data['content'] .= <<<EOD
-                <label for="txtstudentid">Student ID (7 digits long beginning with 2):</label>
-                <input type="text" id="txtstudentid" name="txtstudentid" 
-                    pattern="^2[0-9]{7}$" placeholder="e.g. 20000006" required><br><br>
+                <label for="txtstudentid" class="form-label">Student ID (7 digits long beginning with 2):</label>
+                <input type="text" class="form-control" id="txtstudentid" name="txtstudentid" 
+                    pattern="^2[0-9]{7}$" placeholder="e.g. 20000006" style="width:15%;" required><br>
 
-                <label for="txtpassword">Password:</label>
-                <input type="password" id="txtpassword" name="txtpassword" required><br><br>
+                <label for="txtpassword" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="txtpassword" name="txtpassword"
+                    style="width:15%;" required><br>
 
-                <label for="datedob">Date of Birth:</label>
-                <input type="date" id="datedob" name="datedob" required><br><br>
+                <label for="datedob" class="form-label">Date of Birth:</label>
+                <input type="date" class="form-control" id="datedob" name="datedob"
+                    style="width:15%;" required><br>
 
-                <label for="txtfname">First Name:</label>
-                <input type="text" id="txtfname" name="txtfname" required><br><br>
+                <label for="txtfname" class="form-label">First Name:</label>
+                <input type="text" class="form-control" id="txtfname" name="txtfname"
+                    style="width:15%;" required><br>
 
-                <label for="txtlname">Last Name:</label>
-                <input type="text" id="txtlname" name="txtlname" required><br><br>
+                <label for="txtlname" class="form-label">Last Name:</label>
+                <input type="text" class="form-control" id="txtlname" name="txtlname" style="width:15%;" required><br>
 
-                <label for="txthouse">House Address:</label>
-                <input type="text" id="txthouse" name="txthouse" required><br><br>
+                <label for="txthouse" class="form-label">House Address:</label>
+                <input type="text" class="form-control" id="txthouse" name="txthouse" style="width:15%;" required><br>
 
-                <label for="txttown">Town/City:</label>
-                <input type="text" id="txttown" name="txttown" required><br><br>
+                <label for="txttown" class="form-label">Town/City:</label>
+                <input type="text" class="form-control" id="txttown" name="txttown" style="width:15%;" required><br>
 
-                <label for="txtcounty">County:</label>
-                <input type="text" id="txtcounty" name="txtcounty" required><br><br>
+                <label for="txtcounty" class="form-label">County:</label>
+                <input type="text" class="form-control" id="txtcounty" name="txtcounty" style="width:15%;" required><br>
 
-                <label for="txtcountry">Country:</label>
-                <input type="text" id="txtcountry" name="txtcountry" placeholder="e.g. UK" required><br><br>
+                <label for="txtcountry" class="form-label">Country:</label>
+                <input type="text" class="form-control" id="txtcountry" name="txtcountry" placeholder="e.g. UK"
+                    style="width:15%;" required><br>
 
-                <label for="txtpostcode">Postcode:</label>
-                <input type="text" id="txtpostcode" name="txtpostcode" required><br><br>
+                <label for="txtpostcode" class="form-label">Postcode:</label>
+                <input type="text" class="form-control" id="txtpostcode" name="txtpostcode" 
+                    style="width:15%;" required><br>
 
-                <label for="imgstudent">Image (JPEG only):<label>
-                <input type="file" name="imgstudent" accept="image/jpeg" required><br><br>
+                <label for="imgstudent" class="form-label">Image (JPEG only):</label>
+                <input type="file" class="form-control" name="imgstudent" accept="image/jpeg" style="width:15%;" required><br>
 
-                <input type="submit" name="btnsubmit" value="Submit">
+                <input type="submit" class="btn btn-primary" name="btnsubmit" value="Submit">
             </form>
             EOD;
         }
