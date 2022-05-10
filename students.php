@@ -52,8 +52,7 @@
             $data['content'] .= "<br>";
         }
 
-        $data['content'] .= "<input type='submit' name='btndelete' value='Delete' 
-            onclick='return confirm('Are you sure you want to delete the selected record(s)?');>";
+        $data['content'] .= "<input type='submit' name='btndelete' value='Delete'>";
         $data['content'] .= "</form>";
         $data['content'] .= "WARNING: Don't delete the first record, otherwise you won't be able to login again.";
 
