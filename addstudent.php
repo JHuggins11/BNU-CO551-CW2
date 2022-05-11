@@ -18,21 +18,21 @@
             // Get file binary data
             $imagedata = addslashes(fread(fopen($image, "r"), filesize($image)));
             
-            /* Non-prepared statements
+            // Non-prepared statements
             $sql = "INSERT INTO student ";
             $sql .= "VALUES ('$_POST[txtstudentid]', '" . password_hash($_POST['txtpassword'], PASSWORD_DEFAULT) . "', '$_POST[datedob]', ";
             $sql .= "'$_POST[txtfname]', '$_POST[txtlname]', '$_POST[txthouse]', '$_POST[txttown]', '$_POST[txtcounty]', ";
             $sql .= "'$_POST[txtcountry]', '$_POST[txtpostcode]', '$imagedata');";
 
-            $result = mysqli_query($conn, $sql);*/
+            $result = mysqli_query($conn, $sql);
 
-            // Prepare statement and bind values
+            /* Prepare statement and bind values
             $stmt = $conn->prepare("INSERT INTO student VALUES (?, '" . password_hash($_POST['txtpassword'], PASSWORD_DEFAULT) . "', ?, ?, ?, ?, ?, ?, ?, ?, ?);");
             $stmt->bind_param("sssssssssb", $_POST["txtstudentid"], $_POST["datedob"], $_POST["txtfname"], $_POST["txtlname"], 
                 $_POST["txthouse"], $_POST["txttown"], $_POST["txtcounty"], $_POST["txtcountry"], $_POST["txtpostcode"], $imagedata);
             $stmt->execute();
 
-            $result = $stmt->get_result();
+            $result = $stmt->get_result();*/
             
             $data['content'] .= "New student has been added.";
         }
