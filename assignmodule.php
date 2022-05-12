@@ -14,12 +14,12 @@ if (isset($_SESSION['id'])) {
 
    // If a module has been selected
    if (isset($_POST['selmodule'])) {
-      // Non-prepared statements
+      // Non-prepared statement
       //$sql = "insert into studentmodules values ('" .  $_SESSION['id'] . "','" . $_POST['selmodule'] . "');";
       //$result = mysqli_query($conn, $sql);
 
       // Prepare statement and bind values
-      $stmt = $conn->prepare("insert into studentmodules values (?, ?);");
+      $stmt = $conn->prepare("INSERT INTO studentmodules VALUES (?, ?);");
       $stmt->bind_param("ss", $_SESSION['id'], $_POST['selmodule']);
       $result = $stmt->get_result();
 
@@ -27,9 +27,7 @@ if (isset($_SESSION['id'])) {
    }
    else  // If a module has not been selected
    {
-
-      // TODO: prepared statement
-      // Build sql statment that selects all the modules
+      // Build SQL statement that selects all the modules
       $sql = "select * from module";
       $result = mysqli_query($conn, $sql);
 
