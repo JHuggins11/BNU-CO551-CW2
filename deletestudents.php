@@ -1,6 +1,5 @@
-<!-- CO551 CW2 - Task 3 -->
 <?php
-    // CO551 CW2 - Task 3
+    // CO551 CW2 - Tasks 3 & 7
 
     include("_includes/config.inc");
     include("_includes/dbconnect.inc");
@@ -17,11 +16,17 @@
             header("Location: students.php");
         }
 
-        // TODO: prepared statement
         // Loops over students array and runs a SQL delete query
         foreach ($_POST['students'] as $student) {
-            $sql = "DELETE FROM student WHERE studentid = $student";
-            $result = mysqli_query($conn, $sql);
+            // Non-prepared statements
+            //$sql = "DELETE FROM student WHERE studentid = $student";
+            //$result = mysqli_query($conn, $sql);
+            
+            // Prepare statement and bind values
+            $stmt = $conn->prepare("DELETE FROM student WHERE studentid = ?");
+            $stmt->bind_param("s", $student);
+            $stmt->execute();
+            $result = $stmt->get_result();
         }
 
         if ($result) {

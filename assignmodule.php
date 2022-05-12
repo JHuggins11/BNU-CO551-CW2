@@ -21,6 +21,7 @@ if (isset($_SESSION['id'])) {
       // Prepare statement and bind values
       $stmt = $conn->prepare("INSERT INTO studentmodules VALUES (?, ?);");
       $stmt->bind_param("ss", $_SESSION['id'], $_POST['selmodule']);
+      $stmt->execute();
       $result = $stmt->get_result();
 
       $data['content'] .= "<p>The module " . $_POST['selmodule'] . " has been assigned to you</p>";
