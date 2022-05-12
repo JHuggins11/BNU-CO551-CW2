@@ -1,5 +1,5 @@
 <?php
-    // CO551 CW2 - Task 1
+    // CO551 CW2 - Tasks 1 & 7
 
     include("_includes/config.inc");
     include("_includes/dbconnect.inc");
@@ -7,20 +7,77 @@
 
     // Account login check
     if (isset($_SESSION['id'])) {
-        // TODO: prepared statement
-        // Insert 5 student records into the database
-        $sql = "INSERT INTO student VALUES ";
-        $sql .= "('20000001', '" . password_hash("password1", PASSWORD_DEFAULT) . "', '1980-08-25', 
-            'Terry', 'Walker', '25 Maine Way', 'High Wycombe', 'Bucks', 'UK', 'HP12 1ZZ'), ";
-        $sql .= "('20000002', '" . password_hash("password2", PASSWORD_DEFAULT) . "', '1970-05-23', 
-            'Elizabeth', 'Wayne', '7 Dry Avenue', 'Henley-on-Thames', 'Oxfordshire', 'UK', 'RG11 2FE'), ";
-        $sql .= "('20000003', '" . password_hash("password3", PASSWORD_DEFAULT) . "', '1982-03-15', 
-            'Max', 'Turner', '12 River Drive', 'Henley-on-Thames', 'Oxfordshire', 'UK', 'RG15 5ES'), ";
-        $sql .= "('20000004', '" . password_hash("password4", PASSWORD_DEFAULT) . "', '1980-08-25', 
-            'Sarah', 'Reed', '9 Hill Road', 'High Wycombe', 'Bucks', 'UK', 'HP17 3HE'), ";
-        $sql .= "('20000005', '" . password_hash("password5", PASSWORD_DEFAULT) . "', '1980-08-25', 
-            'Chloe', 'Hart', '15 Rain Street', 'Henley-on-Thames', 'Oxfordshire', 'UK', 'RG22 7WQ');";
+        // Create student entries
+        $array_students = array(
+            array(
+                "studentid" => "20000001",
+                "password" => password_hash("password1", PASSWORD_DEFAULT),
+                "dob" => "1980-08-25",
+                "firstname" => "Terry",
+                "lastname" => "Walker",
+                "house" => "25 Maine Way",
+                "town" => "High Wycombe",
+                "county" => "Bucks",
+                "country" => "UK",
+                "postcode" => "HP12 1ZZ"
+            ),
+            array(
+                "studentid" => "20000002",
+                "password" => password_hash("password2", PASSWORD_DEFAULT),
+                "dob" => "1970-05-23",
+                "firstname" => "Elizabeth",
+                "lastname" => "Wayne",
+                "house" => "7 Dry Avenue",
+                "town" => "Henley-on-Thames",
+                "county" => "Oxfordshire",
+                "country" => "UK",
+                "postcode" => "RG11 2FE"
+            ),
+            array(
+                "studentid" => "20000003",
+                "password" => password_hash("password3", PASSWORD_DEFAULT),
+                "dob" => "1982-03-15",
+                "firstname" => "Max",
+                "lastname" => "Turner",
+                "house" => "12 River Drive",
+                "town" => "Henley-on-Thames",
+                "county" => "Oxfordshire",
+                "country" => "UK",
+                "postcode" => "RG15 5ES"
+            ),
+            array(
+                "studentid" => "20000004",
+                "password" => password_hash("password4", PASSWORD_DEFAULT),
+                "dob" => "1980-08-25",
+                "firstname" => "Sarah",
+                "lastname" => "Reed",
+                "house" => "9 Hill Road",
+                "town" => "High Wycombe",
+                "county" => "Bucks",
+                "country" => "UK",
+                "postcode" => "HP17 3HE"
+            ),
+            array(
+                "studentid" => "20000005",
+                "password" => password_hash("password5", PASSWORD_DEFAULT),
+                "dob" => "1986-02-12",
+                "firstname" => "Chloe",
+                "lastname" => "Hart",
+                "house" => "15 Rain Street",
+                "town" => "Henley-on-Thames",
+                "county" => "Oxfordshire",
+                "country" => "UK",
+                "postcode" => "RG22 7WQ"
+            ),
+        );
 
-        $result = mysqli_query($conn, $sql);
+        // Build prepared statements to insert 5 student records into the database
+        foreach ($array_students as $key => $student_array) {
+            $stmt = $conn->prepare("INSERT INTO student VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+            $stmt->bind_param("ssssssssss", $student_array["studentid"], $student_array["password"], $student_array["firstname"], $student_array["lastname"], 
+                $student_array["house"], $student_array["town"], $student_array["county"], $student_array["country"], $student_array["postcode"]);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }
     }
 ?>
