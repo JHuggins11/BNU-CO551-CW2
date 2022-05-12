@@ -10,7 +10,6 @@
         echo template("templates/partials/header.php");
         echo template("templates/partials/nav.php");
 
-        // TODO: prepared statement
         // Select all records from the student table
         $sql = "SELECT studentid, password, dob, firstname, lastname, house, town, county, country, postcode, image FROM student";
         $result = mysqli_query($conn, $sql);
