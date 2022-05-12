@@ -14,8 +14,15 @@ if (isset($_SESSION['id'])) {
 
    // If a module has been selected
    if (isset($_POST['selmodule'])) {
-      $sql = "insert into studentmodules values ('" .  $_SESSION['id'] . "','" . $_POST['selmodule'] . "');";
-      $result = mysqli_query($conn, $sql);
+      // Non-prepared statements
+      //$sql = "insert into studentmodules values ('" .  $_SESSION['id'] . "','" . $_POST['selmodule'] . "');";
+      //$result = mysqli_query($conn, $sql);
+
+      // Prepare statement and bind values
+      $stmt = $conn->prepare("insert into studentmodules values (?, ?);");
+      $stmt->bind_param("ss", $_SESSION['id'], $_POST['selmodule']);
+      $result = $stmt->get_result();
+
       $data['content'] .= "<p>The module " . $_POST['selmodule'] . " has been assigned to you</p>";
    }
    else  // If a module has not been selected
