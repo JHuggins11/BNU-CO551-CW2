@@ -17,7 +17,8 @@
         $data['content'] .= "<h2>List of Students</h2>";
 
         // Wraps table within an HTML form tag, with the form posting to the specified script to delete the selected student records
-        $data['content'] .= "<form action='deletestudents.php' method='post'>";
+        $data['content'] .= "<form action='deletestudents.php' onsubmit=\"return confirm('Are you sure you want to delete this?');\" 
+            method='post'>";
 
         // Prepare page content and create HTML table
         $data['content'] .= "<table class='table table-bordered' align='left' border='1'>";
