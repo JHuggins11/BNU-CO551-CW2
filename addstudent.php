@@ -38,7 +38,7 @@
         }
         else {
             $data['content'] .= "<h2>Add New Student</h2>";
-            $data['content'] .= "<form enctype='multipart/form-data' action='{$_SERVER['PHP_SELF']}' method='post'>";
+            $data['content'] .= "<form enctype='multipart/form-data' action='" . htmlspecialchars($_SERVER['PHP_SELF']) . "' method='post'>";
             
             // Using <<<EOD notation to allow building of a multi-line string
             $data['content'] .= <<<EOD
