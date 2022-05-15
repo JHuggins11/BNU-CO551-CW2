@@ -42,7 +42,7 @@
             
             // Using <<<EOD notation to allow building of a multi-line string
             $data['content'] .= <<<EOD
-                <label for="txtstudentid" class="form-label">Student ID (7 digits long beginning with 2):</label>
+                <label for="txtstudentid" class="form-label">Student ID (8 digits long beginning with 2):</label>
                 <input type="text" class="form-control" id="txtstudentid" name="txtstudentid" 
                     pattern="^2[0-9]{7}$" placeholder="e.g. 20000006" style="width:15%;" required><br>
 
