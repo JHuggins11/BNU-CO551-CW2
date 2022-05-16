@@ -12,11 +12,11 @@ include "passwordLib.php";
  */
 function validatelogin($id,$password) {
    global $conn;
-   // Non-prepared statement
+   /* Non-prepared statement
    //$sql = "select * from student where studentid='$id';";
    //echo $sql;
    //$loginresult = mysqli_query($conn, $sql);
-   //print_r($studentdetails);
+   //print_r($studentdetails);*/
 
    // Prepares and binds an SQL statment that will return a record with a matching id 
    $stmt = $conn->prepare("select * from student where studentid=?;");
